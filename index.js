@@ -47,13 +47,21 @@ submitCity.addEventListener("click", async () => {
     // Call the api and get an array of cards + response data
     const city = document.getElementById("cityTextField").value;
 
+
+
     const newCity = getWeather(city);
+
+    const iconURL = (await newCity).icon;
+    console.log(iconURL);
+
+
     htmlName.innerText = (await newCity).name;
-    htmlTemp.innerText = "The temperature is currently " + (await newCity).temp + "C";
-    htmlFeelsLike.innerText = "It feels like " + (await newCity).feelsLike + "C";
-    htmlHumidity.innerText = "Humidity today is at " + (await newCity).humidity + " some form...";
+    htmlTemp.innerText = "The temperature is currently " + (await newCity).temp + "°C";
+    htmlFeelsLike.innerText = "It feels like " + (await newCity).feelsLike + "°C";
+    htmlHumidity.innerText = "Humidity today is at " + (await newCity).humidity + "%";
     htmlWindSpeed.innerText = "With a windspeed of " + (await newCity).windSpeed + "m/s";
     htmlDescription.innerText = "Overall the weather is " + (await newCity).description.toLowerCase();
     htmlSubDescripton.innerText = "Containing " + (await newCity).subDescription;
+    htmlIcon.setAttribute("src", `http://openweathermap.org/img/wn/${iconURL}@2x.png`); 
    
 })
