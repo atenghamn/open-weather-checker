@@ -1,0 +1,23 @@
+#setCity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.dataPresenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 5rem;
+
+    height: 25rem;
+}
+
+.form-control {
+    width: 30%;
+    margin: 1rem;
+}
+

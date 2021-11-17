@@ -6,7 +6,8 @@ async function getWeather(name) {
     const res = await fetch (`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=c99451cb5566760aea5851ed0e24d5f4`);
     const data = await res.json();
 
-    //console.log(data);
+    console.log(data);
+    console.log(data.weather[0].description);
 
     place = data;
 
@@ -34,6 +35,7 @@ const htmlTemp = document.getElementById("temp");
 const htmlFeelsLike = document.getElementById("feelsLike");
 const htmlHumidity = document.getElementById("humidity");
 const htmlDescription = document.getElementById("description");
+const htmlSubDescripton = document.getElementById("subDescription");
 const htmlWindSpeed = document.getElementById("windSpeed");
 const htmlIcon = document.getElementById("icon");
 
@@ -47,9 +49,11 @@ submitCity.addEventListener("click", async () => {
 
     const newCity = getWeather(city);
     htmlName.innerText = (await newCity).name;
-    htmlTemp.innerText = (await newCity).temp;
-    htmlFeelsLike.innerText = (await newCity).feelsLike;
-    htmlHumidity.innerText = (await newCity).humidity;
-    htmlDescription.innerText = (await newCity).description;
-    htmlWindSpeed.innerText = (await newCity).windSpeed;
+    htmlTemp.innerText = "The temperature is currently " + (await newCity).temp + "C";
+    htmlFeelsLike.innerText = "It feels like " + (await newCity).feelsLike + "C";
+    htmlHumidity.innerText = "Humidity today is at " + (await newCity).humidity + " some form...";
+    htmlWindSpeed.innerText = "With a windspeed of " + (await newCity).windSpeed + "m/s";
+    htmlDescription.innerText = "Overall the weather is " + (await newCity).description.toLowerCase();
+    htmlSubDescripton.innerText = "Containing " + (await newCity).subDescription;
+   
 })
